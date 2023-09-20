@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -23,6 +24,8 @@ Route::group([
     Route::get('/', function () {
         return view('index');
     });
+
+    Route::get('/categories/create', [RoleController::class, 'create']);
     
     Route::get('/dashboard', function () {
         return view('dashboard');
