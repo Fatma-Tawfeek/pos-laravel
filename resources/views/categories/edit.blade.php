@@ -31,36 +31,11 @@
                     </ul>
                 </div>
                 @endif
-                <form class="form-horizontal" action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data" >
+                <form class="form-horizontal" action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="name" value="{{ $user->name }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" value="{{ $user->email }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm Password" name="password_confirmation">
-                    </div>
-                    <div class="form-group" data-select2-id="11"> 
-                        <select class="form-control" name="role">
-                            <option value="" disabled>Select Role</option> 
-                            @foreach ($roles as $role)
-                            <option value="{{ $role->name }}" {{ $user->roles->pluck('name') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>                                
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="formFile" class="form-label">Image</label> 
-                        <img src="{{ asset('images/users/' . $user->image ) }}" alt="" width="100" class="img-thumbnail" id="blah">
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Image</label> 
-                        <input class="form-control" type="file" accept="image/*" id="imgInp" name="image"> 
+                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="name" value="{{ $category->name }}">
                     </div>
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>

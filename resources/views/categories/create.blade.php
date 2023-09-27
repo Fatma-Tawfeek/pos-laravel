@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Add User
+Add Category
 @endsection
 
 @section('page-header')
@@ -23,7 +23,7 @@ Add User
     <div class="col-md-12 col-sm-12">
         <div class="card  box-shadow-0">
             <div class="card-header">
-                <h4 class="card-title mb-1">Add User Form</h4>
+                <h4 class="card-title mb-1">Add Category Form</h4>
             </div>
             <div class="card-body pt-0">
                 @if ($errors->any())
@@ -35,34 +35,10 @@ Add User
                     </ul>
                 </div>
                 @endif
-                <form class="form-horizontal" action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('categories.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <input type="text" class="form-control" id="inputName" placeholder="Name" name="name" value="{{ old('name') }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" value="{{ old('email') }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm Password" name="password_confirmation">
-                    </div>
-                    <div class="form-group" data-select2-id="11"> 
-                        <select class="form-control" name="role">
-                            <option value="" disabled selected >Select Role</option> 
-                            @foreach ($roles as $role)
-                            <option value="{{ $role->name }}">{{ $role->name }}</option>                                
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="formFile" class="form-label">Image</label> 
-                        <img src="{{ asset('images/users/default.png') }}" alt="" width="100" class="img-thumbnail" id="blah">
-                    </div>
-                    <div class="mb-3">
-                        <input class="form-control" type="file" name="image" accept="image/*" id="imgInp"> 
                     </div>
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <button type="submit" class="btn btn-primary">Add</button>
@@ -78,14 +54,3 @@ Add User
 </div>
 <!-- main-content closed -->
 @endsection
-
-@push('scripts')
-<script>
-imgInp.onchange = evt => {
-    const [file] = imgInp.files
-    if (file) {
-      blah.src = URL.createObjectURL(file)
-    }
-  }
-</script> 
-@endpush

@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('Super Admin');
 
 
-        // $this->call([
-        //     PermissionSeeder::class
-        // ]);
+        $this->call([
+            PermissionSeeder::class
+        ]);
     }
 }

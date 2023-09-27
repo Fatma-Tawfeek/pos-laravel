@@ -26,12 +26,33 @@
 				<ul class="side-menu">
 
 					<li class="slide">
+						<a class="side-menu__item" href="{{ route('categories.index') }}">
+							<?xml version="1.0" ?>
+							<svg height="32" id="icon" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon">
+								<defs>
+									<style>.cls-1{fill:none;}</style>
+								</defs>
+								<title/>
+								<rect height="2" width="14" x="14" y="25"/>
+								<polygon points="7.17 26 4.59 28.58 6 30 10 26 6 22 4.58 23.41 7.17 26"/>
+								<rect height="2" width="14" x="14" y="15"/>
+								<polygon points="7.17 16 4.59 18.58 6 20 10 16 6 12 4.58 13.41 7.17 16"/>
+								<rect height="2" width="14" x="14" y="5"/>
+								<polygon points="7.17 6 4.59 8.58 6 10 10 6 6 2 4.58 3.41 7.17 6"/>
+								<rect class="cls-1" data-name="&lt;Transparent Rectangle&gt;" height="32" id="_Transparent_Rectangle_" width="32"/>
+							</svg>
+							<span class="side-menu__label">Categories</span>
+						</a>
+					</li>
+
+					<li class="slide">
 						<a class="side-menu__item" href="{{ route('roles.index') }}">
 							<?xml version="1.0" ?>
-							<svg id="Icons" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon">
-								<path class="cls-1" d="M22.814,9.216l-.826-5.368A1,1,0,0,0,21,3C15.533,3,12.731.316,12.707.293a1,1,0,0,0-1.41,0C11.269.316,8.467,3,3,3a1,1,0,0,0-.988.848L1.186,9.216A12.033,12.033,0,0,0,7.3,21.576l4.22,2.3a1,1,0,0,0,.958,0l4.22-2.3A12.033,12.033,0,0,0,22.814,9.216Zm-7.072,10.6L12,21.861,8.258,19.82a10.029,10.029,0,0,1-5.1-10.3l.7-4.541A14.717,14.717,0,0,0,12,2.3,14.717,14.717,0,0,0,20.139,4.98l.7,4.54A10.029,10.029,0,0,1,15.742,19.82Z"/>
-								<path class="cls-1" d="M15.293,8.293,10,13.586,8.707,12.293a1,1,0,1,0-1.414,1.414l2,2a1,1,0,0,0,1.414,0l6-6a1,1,0,0,0-1.414-1.414Z"/>
-							</svg>
+							<?xml version="1.0" ?>
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon"><g>
+								<path d="M0 0H24V24H0z" fill="none"/>
+								<path d="M12 1l8.217 1.826c.457.102.783.507.783.976v9.987c0 2.006-1.003 3.88-2.672 4.992L12 23l-6.328-4.219C4.002 17.668 3 15.795 3 13.79V3.802c0-.469.326-.874.783-.976L12 1zm0 2.049L5 4.604v9.185c0 1.337.668 2.586 1.781 3.328L12 20.597l5.219-3.48C18.332 16.375 19 15.127 19 13.79V4.604L12 3.05zm4.452 5.173l1.415 1.414L11.503 16 7.26 11.757l1.414-1.414 2.828 2.828 4.95-4.95z"/></g>
+							</svg>							
 							<span class="side-menu__label mt-2">Roles</span>
 						</a>
 					</li>
@@ -46,7 +67,6 @@
 									<path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
 								</g>
 							</svg>
-							{{-- <i class="side-menu__icon bi bi-person-square"></i> --}}
 							<span class="side-menu__label">Users</span>
 						</a>
 					</li>

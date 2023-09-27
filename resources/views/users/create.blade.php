@@ -51,7 +51,7 @@ Add User
                     </div>
                     <div class="form-group" data-select2-id="11"> 
                         <select class="form-control" name="role">
-                            <option value="" disabled selected >Select Role</option> 
+                            <option value="" selected >Select Role</option> 
                             @foreach ($roles as $role)
                             <option value="{{ $role->name }}">{{ $role->name }}</option>                                
                             @endforeach

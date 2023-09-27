@@ -22,14 +22,20 @@
                             <form action="{{route('roles.store')}}" method="POST">
                                 @csrf                            
                                 <h1 class="text-3xl mt-4 mb-8"> Create Role </h1>
+
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                             
                                 <div class="mb-6">
                                     <label for="name" class="block">Role Name:</label>
                                     <input type="text" value="{{old('name')}}" name="name" id="name" class="form-control" placeholder="User, Editor, Author ... " >
-                                    
-                                    @foreach ($errors->get('name') as $error)
-                                        <p class="text-red-600">{{$error}}</p>
-                                    @endforeach
                                 </div>
 
                                 <label for="name" class="block mt-4">Permissions:</label>                            

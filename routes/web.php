@@ -29,6 +29,8 @@ Route::group([
 
     // Categories routes
     Route::resource('categories', CategoryController::class)->except('show');
+    Route::get('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
 
     // Users routes
     Route::resource('users', UserController::class)->except('show');    

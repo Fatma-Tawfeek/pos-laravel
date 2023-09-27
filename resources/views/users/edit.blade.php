@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group" data-select2-id="11"> 
                         <select class="form-control" name="role">
-                            <option value="" disabled>Select Role</option> 
+                            <option value="">Select Role</option> 
                             @foreach ($roles as $role)
                             <option value="{{ $role->name }}" {{ $user->roles->pluck('name') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>                                
                             @endforeach

@@ -48,6 +48,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' =>'required|string|max:255|unique:roles,name',
+        ]);
+
         $role = Role::create([
             'name' => $request->name,
         ]);
@@ -98,7 +102,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
 
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|string|max:255|unique:roles,name,' . $id
         ]);
 
         $role->update([

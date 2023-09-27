@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Users
+    Categories
 @endsection
 
 @section('page-header')
@@ -24,22 +24,24 @@
     <div class="card mg-b-20">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title mg-b-0">Users <small>{{ $users->total() }}</small></h4>
+                <h4 class="card-title mg-b-0">Categories <small>{{ $categories->total() }}</small></h4>
             </div>
         </div>
         <div class="card-body">
             <div class="row">
 
+                @can('categories.create')
                 <div class="col-7">
-                <a class="btn btn-primary mb-3" href="{{ route('users.create') }}">
-                  <i class="fas fa-plus"></i> Add User
-                </a>
-                </div>
-                
+                    <a class="btn btn-primary mb-3" href="{{ route('categories.create') }}">
+                      <i class="fas fa-plus"></i> Add Category
+                    </a>
+                    </div>
+                @endcan       
+                         
                 <div class="col-5">
-                <form action="{{ route('users.index') }}" method="get">
+                <form action="{{ route('categories.index') }}" method="get">
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="Search with Name or Email....." name="search" value="{{ request()->search }}">
+                        <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="Search with Name....." name="search" value="{{ request()->search }}">
                         <button class="btn ripple btn-primary mx-2" type="submit"><i class="fas fa-search mx-1"></i>Search</button>
                     </div>
                 </form>   
@@ -51,41 +53,35 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Image</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($users as $user)
+                        @forelse ($categories as $category)
                         <tr>
                             <th scope="row">{{$loop->iteration}}</th>
+                            <td>{{$category->name}}</td>
                             <td>
-                                <img src="{{asset('images/users/' . $user->image)}}" alt="" class="rounded-circle" width="50" height="50">
-                            </td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td> 
-                                @foreach ($user->roles->pluck('name') as $role )
-                                    <span class="tag tag-green">{{$role}}</span>     
-                                @endforeach 
-                            </td>
-                            <td>
-                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
 
-                                <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                @can('categories.edit')
+                                <a href="{{route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
+                                @endcan
+
+                                @can('categories.delete')
+                                <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                                    
+                                @endcan
+
                             </td>
                         </tr>
                         @empty
-                            <p>There is no Users</p>
+                            <h3>There is no categories</h3>
                         @endforelse
                     </tbody>
                 </table>
                 
             </div>
-            {{$users->appends(request()->query())->links()}}
+            {{$categories->appends(request()->query())->links()}}
         </div>
     </div>
 </div>
