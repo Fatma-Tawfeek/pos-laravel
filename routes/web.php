@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -18,14 +20,23 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
 ], function () {
 
     Route::get('/', function () {
         return view('index');
-    });
+    })->name('home');
 
-    Route::get('/categories/create', [RoleController::class, 'create']);
+    // Categories routes
+    Route::resource('categories', CategoryController::class)->except('show');
+
+    // Users routes
+    Route::resource('users', UserController::class)->except('show');    
+    Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+    // Roles routes
+    Route::resource('roles', RoleController::class)->except('show');
     
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -37,9 +48,10 @@ Route::group([
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    require __DIR__.'/auth.php';
-
 });
+
+
+require __DIR__.'/auth.php';
 
 
 

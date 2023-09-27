@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission; 
 
 class RoleController extends Controller
@@ -14,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -22,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        DB::statement("SET SQL_MODE=''");;
+        DB::statement("SET SQL_MODE=''");
         $role_permission = Permission::select('name','id')->groupBy('name')->get();
     
         $custom_permission = array();
@@ -46,15 +48,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $role = Role::create([
+            'name' => $request->name,
+        ]);
+    
+        if($request->permissions){    
+            foreach ($request->permissions as $key => $value) {
+                $role->givePermissionTo($value);
+            }
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Alert::toast('Toast Message', 'success');
+    
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -62,7 +68,25 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = Role::with('permissions')->find($id);
+
+        DB::statement("SET SQL_MODE=''");
+        $role_permission = Permission::select('name','id')->groupBy('name')->get();
+
+
+        $custom_permission = array();
+
+        foreach($role_permission as $per){
+
+            $key = substr($per->name, 0, strpos($per->name, "."));
+
+            if(str_starts_with($per->name, $key)){
+                $custom_permission[$key][] = $per;
+            }
+
+        }
+
+        return view('roles.edit', compact('role'))->with('permissions',$custom_permission);
     }
 
     /**
@@ -70,7 +94,22 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         
+        $role = Role::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $role->update([
+            "name" => $request->name
+        ]);
+
+        $role->syncPermissions($request->permissions);
+
+        Alert::toast('Toast Message', 'success');
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -78,6 +117,17 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $role = Role::findOrFail($id);
+
+        if(isset($role)) {        
+            
+        $role->permissions()->detach();
+        $role->delete();
+
+        Alert::toast('Toast Message', 'success');
+        return redirect()->route('roles.index');
+        
+        }
     }
+
 }

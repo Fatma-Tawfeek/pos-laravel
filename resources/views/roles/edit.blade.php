@@ -19,13 +19,14 @@
                 <div class="card">
                     <div class="card-body">
                         
-                            <form action="{{route('roles.store')}}" method="POST">
-                                @csrf                            
+                            <form action="{{route('roles.update', $role->id )}}" method="POST">
+                                @csrf         
+                                @method('PUT')                   
                                 <h1 class="text-3xl mt-4 mb-8"> Create Role </h1>
                             
                                 <div class="mb-6">
                                     <label for="name" class="block">Role Name:</label>
-                                    <input type="text" value="{{old('name')}}" name="name" id="name" class="form-control" placeholder="User, Editor, Author ... " >
+                                    <input type="text" value="{{ $role->name }}" name="name" id="name" class="form-control" placeholder="User, Editor, Author ... " >
                                     
                                     @foreach ($errors->get('name') as $error)
                                         <p class="text-red-600">{{$error}}</p>
@@ -63,7 +64,7 @@
                                                 @forelse($group as $permission)
                             
                                                 <label style="width: 30%" class="">
-                                                    <input name="permissions[]" class="permissioncheckbox" class="rounded-md border" type="checkbox" value="{{ $permission->id }}">
+                                                    <input name="permissions[]" class="permissioncheckbox" class="rounded-md border" type="checkbox" value="{{ $permission->id }}" {{ $role->permissions->contains('id',$permission->id) ? "checked" : "" }}>
                                                     {{$permission->name}} &nbsp;&nbsp;
                                                 </label>                            
                                                 @empty
@@ -73,12 +74,11 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                </table>                         
+                                </table>             
                             
                                 <button class="btn btn-primary" type="submit">Submit form</button>
                             
                             </form>
-
                     </div>
                 </div>
             </div>
@@ -151,7 +151,6 @@
 
     $('.selectall').each(function (i) {
 
-
         $(this).closest('tr').find('.permissioncheckbox').each(function (index) {
             if ($(this).is(":checked")) {
                 allchecked.push(1);
@@ -169,7 +168,6 @@
     }
 
     $('.permissionTable').on('click', '.permissioncheckbox', function () {
-
     var allchecked = new Array;
 
     $(this).closest('tr').find('.permissioncheckbox').each(function (index) {

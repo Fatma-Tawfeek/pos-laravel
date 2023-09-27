@@ -25,5 +25,7 @@
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')	
+				@include('sweetalert::alert')
+				@stack('scripts')
 	</body>
 </html>
