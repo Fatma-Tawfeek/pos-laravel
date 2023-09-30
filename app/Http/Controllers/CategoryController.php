@@ -43,10 +43,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required','string', 'unique:categories,name','max:255'],
+            'name_ar' => ['required','string', 'unique_translation:categories,name','max:255'],
+            'name_en' => ['required','string', 'unique_translation:categories,name','max:255']
         ]);
 
-        Category::create($request->all());
+        Category::create([
+            'name' => [
+               'ar' => $request->name_ar,
+               'en' => $request->name_en
+            ]
+         ]);
 
         Alert::toast('Toast Message', 'success');
 
@@ -67,11 +73,15 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => ['required','string','max:255', 'unique:categories,name,' . $category->id],
+            'name_ar' => ['required','string', 'max:255', 'unique_translation:categories,name,' . $category->id],
+            'name_en' => ['required','string', 'max:255', 'unique_translation:categories,name,' . $category->id]
         ]);
 
         $category->update([
-            'name' => $request->name
+            'name' => [
+                'ar' => $request->name_ar,
+                'en' => $request->name_en
+             ]
         ]);
 
         Alert::toast('Toast Message', 'info');

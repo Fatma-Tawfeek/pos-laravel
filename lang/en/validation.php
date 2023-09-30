@@ -213,5 +213,15 @@ return [
         'updated_at'               => 'updated at',
         'username'                 => 'username',
         'year'                     => 'year',
+
+        // ar & en fields
+        'name_ar'                     => 'name in Arabic',
+        'name_en'                     => 'name in English',
+        'desc_ar'                     => 'describtion in Arabic',
+        'desc_en'                     => 'describtion in English',
+        'category_id'                 => 'category',
+        'purchase_price'              => 'purchase price',
+        'sale_price'                  => 'sale price',
+        'stock'                       => 'stock',
     ],
 ];

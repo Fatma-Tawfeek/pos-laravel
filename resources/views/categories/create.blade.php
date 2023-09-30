@@ -37,9 +37,16 @@ Add Category
                 @endif
                 <form class="form-horizontal" action="{{ route('categories.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="name" value="{{ old('name') }}">
-                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Name <small class="text-danger">(العربية)</small></label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name_ar" value="{{ old('name_ar') }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Name <small class="text-danger">(English)</small></label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name_en" value="{{ old('name_en') }}">
+                        </div>
+                    </div>                   
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </div>

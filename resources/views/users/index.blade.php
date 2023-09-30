@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Users
+{{ trans('users.title') }}
 @endsection
 
 @section('page-header')
@@ -10,7 +10,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">Forms</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Form-Validation</span>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('users.title') }}</span>
             </div>
         </div>
     </div>
@@ -24,19 +24,19 @@
     <div class="card mg-b-20">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title mg-b-0">Users <small>{{ $users->total() }}</small></h4>
+                <h4 class="card-title mg-b-0">{{ trans('users.title') }}<small>{{ $users->total() }}</small></h4>
             </div>
         </div>
         <div class="card-body">
             <div class="row">
 
-                <div class="col-7">
+                <div class="col-md-7">
                 <a class="btn btn-primary mb-3" href="{{ route('users.create') }}">
                   <i class="fas fa-plus"></i> Add User
                 </a>
                 </div>
                 
-                <div class="col-5">
+                <div class="col-md-5">
                 <form action="{{ route('users.index') }}" method="get">
                     <div class="input-group mb-2">
                         <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="Search with Name or Email....." name="search" value="{{ request()->search }}">

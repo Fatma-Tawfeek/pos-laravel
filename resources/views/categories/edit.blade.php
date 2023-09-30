@@ -34,9 +34,16 @@
                 <form class="form-horizontal" action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     @method('PUT')
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="name" value="{{ $category->name }}">
-                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Name <small class="text-danger">(العربية)</small></label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name_ar" value="{{ $category->getTranslation('name', 'ar') }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Name <small class="text-danger">(English)</small></label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name_en" value="{{ $category->getTranslation('name', 'en') }}">
+                        </div>
+                    </div> 
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>
                             <button type="submit" class="btn btn-primary">Edit</button>

@@ -10,6 +10,13 @@
       'Debugbar' => 'Barryvdh\\Debugbar\\Facades\\Debugbar',
     ),
   ),
+  'codezero/laravel-unique-translation' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'CodeZero\\UniqueTranslation\\UniqueTranslationServiceProvider',
+    ),
+  ),
   'intervention/image' => 
   array (
     'providers' => 
@@ -136,6 +143,13 @@
     'providers' => 
     array (
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
+    ),
+  ),
+  'spatie/laravel-translatable' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Translatable\\TranslatableServiceProvider',
     ),
   ),
 );

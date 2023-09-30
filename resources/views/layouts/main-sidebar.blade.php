@@ -26,6 +26,21 @@
 				<ul class="side-menu">
 
 					<li class="slide">
+						<a class="side-menu__item" href="{{ route('home') }}">
+							<?xml version="1.0" ?>
+							<svg style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="side-menu__icon">
+								<g id="info"/><g id="icons"><g id="dashboard">
+									<path d="M5,18H3c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h2c1.1,0,2-0.9,2-2C7,18.9,6.1,18,5,18z"/>
+									<path d="M13,16h-2c-1.1,0-2,0.9-2,2v2c0,1.1,0.9,2,2,2h2c1.1,0,2-0.9,2-2v-2C15,16.9,14.1,16,13,16z"/>
+									<path d="M21,12h-2c-1.1,0-2,0.9-2,2v6c0,1.1,0.9,2,2,2h2c1.1,0,2-0.9,2-2v-6C23,12.9,22.1,12,21,12z"/>
+									<path d="M22,2h-6.6c-0.9,0-1.3,1.1-0.7,1.7l1.9,1.9C12.9,9.8,7.6,13,2,13c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1    c6.7,0,12.9-1.9,17.4-6.6l1.8,1.8c0.6,0.6,1.7,0.2,1.7-0.7V3C23,2.4,22.6,2,22,2z"/></g></g>
+							</svg>
+							<span class="side-menu__label">Dashboard</span>
+						</a>
+					</li>
+
+
+					<li class="slide">
 						<a class="side-menu__item" href="{{ route('categories.index') }}">
 							<?xml version="1.0" ?>
 							<svg height="32" id="icon" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon">
@@ -42,6 +57,12 @@
 								<rect class="cls-1" data-name="&lt;Transparent Rectangle&gt;" height="32" id="_Transparent_Rectangle_" width="32"/>
 							</svg>
 							<span class="side-menu__label">Categories</span>
+						</a>
+					</li>
+
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('products.index') }}">
+							<?xml version="1.0" ?><svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon"><path d="M463.1 416c-26.51 0-47.1 21.49-47.1 48s21.49 48 47.1 48s47.1-21.49 47.1-48S490.5 416 463.1 416zM175.1 416c-26.51 0-47.1 21.49-47.1 48S149.5 512 175.1 512s47.1-21.49 47.1-48S202.5 416 175.1 416zM569.5 44.73c-6.109-8.094-15.42-12.73-25.56-12.73H121.1L119.6 19.51C117.4 8.19 107.5 0 96 0H23.1C10.75 0 0 10.75 0 23.1S10.75 48 23.1 48h52.14l60.28 316.5C138.6 375.8 148.5 384 160 384H488c13.25 0 24-10.75 24-23.1C512 346.7 501.3 336 488 336H179.9L170.7 288h318.4c14.29 0 26.84-9.47 30.77-23.21l54.86-191.1C577.5 63.05 575.6 52.83 569.5 44.73z"/></svg>							<span class="side-menu__label">Products</span>
 						</a>
 					</li>
 
@@ -67,7 +88,7 @@
 									<path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
 								</g>
 							</svg>
-							<span class="side-menu__label">Users</span>
+							<span class="side-menu__label">{{ trans('users.title') }}</span>
 						</a>
 					</li>
 

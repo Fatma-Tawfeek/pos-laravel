@@ -31,14 +31,14 @@
             <div class="row">
 
                 @can('categories.create')
-                <div class="col-7">
+                <div class="col-md-7">
                     <a class="btn btn-primary mb-3" href="{{ route('categories.create') }}">
                       <i class="fas fa-plus"></i> Add Category
                     </a>
                     </div>
                 @endcan       
                          
-                <div class="col-5">
+                <div class="col-md-5">
                 <form action="{{ route('categories.index') }}" method="get">
                     <div class="input-group mb-2">
                         <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="Search with Name....." name="search" value="{{ request()->search }}">
@@ -54,6 +54,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Products Count</th>
+                            <th>Related Products</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -62,6 +64,8 @@
                         <tr>
                             <th scope="row">{{$loop->iteration}}</th>
                             <td>{{$category->name}}</td>
+                            <td>{{ $category->products()->count() }}</td>
+                            <td><a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="btn btn-info btn-sm">Related Products</a></td>
                             <td>
 
                                 @can('categories.edit')
