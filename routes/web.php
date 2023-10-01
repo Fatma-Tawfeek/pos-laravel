@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -25,7 +26,7 @@ Route::group([
 ], function () {
 
     Route::get('/', function () {
-        return view('index');
+        return view('home');
     })->name('home');
 
     // Categories routes
@@ -36,10 +37,13 @@ Route::group([
     Route::resource('products', ProductController::class)->except('show');
     Route::get('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
+    // Clients routes
+    Route::resource('clients', ClientController::class)->except('show');    
+    Route::get('clients/{user}', [ClientController::class, 'destroy'])->name('clients.destroy');
+
     // Users routes
     Route::resource('users', UserController::class)->except('show');    
     Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-
 
     // Roles routes
     Route::resource('roles', RoleController::class)->except('show');

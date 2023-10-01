@@ -43,7 +43,22 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'products.delete',
                 'guard_name' => 'web'
-            ]                        
+            ],
+            [
+                'name' => 'clients.view',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'clients.create',
+                'guard_name' => 'web'
+            ],
+            [   'name' => 'clients.edit',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'clients.delete',
+                'guard_name' => 'web'
+            ]                           
         ]);
     }
 }
