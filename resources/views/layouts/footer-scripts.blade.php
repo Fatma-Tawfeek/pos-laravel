@@ -34,6 +34,9 @@
 @yield('js')
 <!-- Sticky js -->
 <script src="{{URL::asset('assets/js/sticky.js')}}"></script>
+{{-- JQuery Number --}}
+<script src="{{ asset('assets/plugins/jquery-number/jquery.number.min.js') }}"></script>
 <!-- custom js -->
 <script src="{{URL::asset('assets/js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('assets/plugins/side-menu/sidemenu.js')}}"></script>
+<script src="{{ asset('assets/js/custom/order.js') }}"></script>

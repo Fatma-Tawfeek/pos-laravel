@@ -75,11 +75,11 @@ Edit Product
                     </div>   
                     <div class="form-group">
                         <label for="inputName">Purchase Price</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="Purchase Price" name="purchase_price" value="{{ $product->purchase_price }}">
+                        <input type="number" class="form-control" id="inputName" placeholder="Purchase Price" step="0.01"  name="purchase_price" value="{{ $product->purchase_price }}">
                     </div>  
                     <div class="form-group">
                         <label for="inputName">Sale Price</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="Sale Price" name="sale_price" value="{{ $product->sale_price }}">
+                        <input type="number" class="form-control" id="inputName" placeholder="Sale Price" step="0.01" name="sale_price" value="{{ $product->sale_price }}">
                     </div>   
                     <div class="form-group">
                         <label for="inputName">Stock</label>

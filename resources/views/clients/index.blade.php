@@ -54,6 +54,7 @@ Clients
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Address</th>
+                            <th>Add Order</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -64,6 +65,7 @@ Clients
                             <td>{{ $client->name }}</td>
                             <td>{{ implode(' - ', array_filter($client->phone)) }}</td>
                             <td>{{ $client->address }}</td>
+                            <td><a href="{{ route('clients-orders.create', $client) }}" class="btn btn-info btn-sm">Add Order</a></td>
                             <td>
                                 <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
 

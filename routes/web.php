@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Client\OrderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -40,6 +40,7 @@ Route::group([
     // Clients routes
     Route::resource('clients', ClientController::class)->except('show');    
     Route::get('clients/{user}', [ClientController::class, 'destroy'])->name('clients.destroy');
+    Route::resource('clients-orders', OrderController::class)->except('show');
 
     // Users routes
     Route::resource('users', UserController::class)->except('show');    

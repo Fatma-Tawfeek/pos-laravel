@@ -58,6 +58,21 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'clients.delete',
                 'guard_name' => 'web'
+            ],
+            [
+                'name' => 'orders.view',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'orders.create',
+                'guard_name' => 'web'
+            ],
+            [   'name' => 'orders.edit',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'orders.delete',
+                'guard_name' => 'web'
             ]                           
         ]);
     }
