@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -25,13 +26,11 @@ Route::group([
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
 ], function () {
 
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Categories routes
-    Route::get('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     Route::resource('categories', CategoryController::class)->except('show');
+    Route::get('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // Products routes
     Route::resource('products', ProductController::class)->except('show');

@@ -44,7 +44,6 @@ Orders
                                 <th>#</th>                            
                                 <th>Client Name</th>
                                 <th>Price</th>
-                                {{-- <th>Status</th> --}}
                                 <th>Created At</th>
                                 <th>Actions</th>
                             </tr>
@@ -55,14 +54,6 @@ Orders
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $order->client->name }}</td>
                                 <td>{{ number_format($order->total_price, 2) }}</td>
-                                {{-- <td>
-                                    <button 
-                                    data-status="{{ $order->status }}"
-                                    data-url="{{ route('orders.update_status', $order->id) }}"
-                                    data-method="put"
-                                    data-avaliable-status=""
-                                    ></button>
-                                </td> --}}
                                 <td>{{ $order->created_at->toFormattedDateString() }}</td>
                                 <td>
                                     <button class="btn btn-info btn-sm order-products"
@@ -74,7 +65,7 @@ Orders
                                     <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
     
                                     <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
-                                </td>''
+                                </td>
                             </tr>
                             @empty
                                 <p>There is no orders</p>
