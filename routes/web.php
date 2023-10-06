@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Client\OrderController;
+use App\Http\Controllers\OrderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -30,8 +30,8 @@ Route::group([
     })->name('home');
 
     // Categories routes
-    Route::resource('categories', CategoryController::class)->except('show');
     Route::get('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::resource('categories', CategoryController::class)->except('show');
 
     // Products routes
     Route::resource('products', ProductController::class)->except('show');
@@ -40,7 +40,11 @@ Route::group([
     // Clients routes
     Route::resource('clients', ClientController::class)->except('show');    
     Route::get('clients/{user}', [ClientController::class, 'destroy'])->name('clients.destroy');
-    Route::resource('clients-orders', OrderController::class)->except('show');
+    Route::resource('clients.orders', App\Http\Controllers\Client\OrderController::class)->except('show');
+
+    // Orders routes
+    Route::resource('orders', OrderController::class)->except('show');
+    Route::get('orders.products/{order}', [OrderController::class, 'products'])->name('orders.products');
 
     // Users routes
     Route::resource('users', UserController::class)->except('show');    

@@ -29,7 +29,7 @@ $(document).ready(function () {
 
         e.preventDefault();
 
-    });//end of disabled
+    });
 
     //remove product btn
     $('body').on('click', '.remove-product-btn', function(e) {
@@ -43,18 +43,18 @@ $(document).ready(function () {
         //to calculate total price
         calculateTotal();
 
-    });//end of remove product btn
+    });
 
     //change product quantity
     $('body').on('keyup change', '.product-quantity', function() {
 
-        var quantity = Number($(this).val()); //2
-        var unitPrice = parseFloat($(this).data('price').replace(/,/g, '')); //150
+        var quantity = Number($(this).val()); 
+        var unitPrice = parseFloat($(this).data('price').replace(/,/g, '')); 
         console.log(unitPrice);
         $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice, 2));
         calculateTotal();
 
-    });//end of product quantity change
+    });
 
     //list all order products
     $('.order-products').on('click', function(e) {
@@ -77,16 +77,16 @@ $(document).ready(function () {
             }
         })
 
-    });//end of order products click
+    });
 
     //print order
     $(document).on('click', '.print-btn', function() {
 
         $('#print-area').printThis();
 
-    });//end of click function
+    });
 
-});//end of document ready
+});
 
 //calculate the total
 function calculateTotal() {
@@ -97,7 +97,7 @@ function calculateTotal() {
         
         price += parseFloat($(this).html().replace(/,/g, ''));
 
-    });//end of product price
+    });
 
     $('.total-price').html($.number(price, 2));
 
@@ -110,6 +110,6 @@ function calculateTotal() {
 
         $('#add-order-form-btn').addClass('disabled')
 
-    }//end of else
+    }
 
-}//end of calculate total
+}

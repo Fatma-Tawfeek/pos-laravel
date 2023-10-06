@@ -28,9 +28,9 @@ Add Order
                 <h4 class="card-title mb-1">Categories</h4>
             </div>
             <div class="card-body pt-0">
-                @forelse ( $categories as $category )   
+                @foreach ( $categories as $category )   
                 <p>         
-                <a class="btn btn-primary" data-toggle="collapse" href="#category{{ $category->id }}" aria-controls="collapseExample" aria-expanded="false" role="button">
+                <a class="btn btn-primary btn-block" data-toggle="collapse" href="#category{{ $category->id }}" aria-controls="collapseExample" aria-expanded="false" role="button">
                     {{ $category->name }}
                 </a>  
                 </p>              
@@ -51,7 +51,7 @@ Add Order
                                     <tr>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->stock }}</td>
-                                        <td>{{ $product->sale_price }}</td>
+                                        <td>{{ number_format($product->sale_price, 2) }}</td>
                                         <td>
                                             <a 
                                             href="#" 
@@ -69,9 +69,7 @@ Add Order
                         </div>
                     </div>
                 </div>                    
-                @empty
-                    <p>There is no categories</p>
-                @endforelse
+                @endforeach
 
               </div>
             </div>
@@ -84,7 +82,16 @@ Add Order
                 <h4 class="card-title mb-1">Orders</h4>
             </div>
             <div class="card-body pt-0">
-                <form action="" method="post">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form action="{{ route('clients.orders.store', $client) }}" method="post">
                     @csrf
                     <div class="table-responsive mb-3">
                         <table class="table table-bordered mg-b-0 text-md-nowrap">
@@ -101,9 +108,33 @@ Add Order
                         </table>                    
                     </div>
                     <h4>Total : <span class="total-price">0</span> </h4>
-                    <button class="btn btn-primary disabled" type="submit" id="add-order-form-btn">Add Order</button>
+                    <button class="btn btn-primary btn-block disabled" type="submit" id="add-order-form-btn">Add Order</button>
                 </form>
-               
+            </div>
+        </div>
+
+        <div class="card  box-shadow-0">
+            <div class="card-header">
+                <h4 class="card-title mb-1">Previous Orders <small>{{ $orders->total() }}</small></h4>
+            </div>
+            <div class="card-body pt-0">
+
+                @foreach ( $orders as $order )   
+                <p>         
+                <a class="btn btn-success" data-toggle="collapse" href="#order{{ $order->created_at->format('d-m-Y-s') }}">{{ $order->created_at->toFormattedDateString() }}</a> 
+                </p>              
+                <div class="collapse" id="order{{ $order->created_at->format('d-m-Y-s') }}">
+                    <div class="card card-body">
+                        <ul class="list-group">
+                            @foreach ($order->products as $product)
+                                <li class="list-group-item">{{ $product->name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>                    
+                @endforeach
+
+            {{ $orders->links() }}
 
             </div>
         </div>

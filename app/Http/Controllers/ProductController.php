@@ -24,6 +24,7 @@ class ProductController extends Controller
         })->when($request->category_id, function ($q) use ($request) {
             return $q->where('category_id', $request->category_id);
         })
+        ->with('category')
         ->orderBy('id', 'desc')
         ->paginate();
 
