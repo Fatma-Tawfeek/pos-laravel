@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOrderRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
@@ -26,12 +27,8 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Client $client)
+    public function store(StoreOrderRequest $request, Client $client)
     {
-        $request->validate([
-            'products' => ['required', 'array'],
-        ]);
-
         $this->attach_order($request, $client);
         
         Alert::toast('Toast Message', 'success');
@@ -53,12 +50,8 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client, Order $order)
+    public function update(StoreOrderRequest $request, Client $client, Order $order)
     {
-        $request->validate([
-            'products' => ['required', 'array'],
-        ]);
-
         $this->detach_order($order);
 
         $this->attach_order($request, $client);
@@ -84,7 +77,6 @@ class OrderController extends Controller
             $product->update([
                 'stock' => $product->stock - $quantity['quantity']
             ]);
-
         }
 
         $order->update([

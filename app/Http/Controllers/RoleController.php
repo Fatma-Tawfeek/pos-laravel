@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -14,12 +16,15 @@ class RoleController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {        
+        $roles = Role::get();
+
+        // Delete confirmation        
         $title = 'Delete User!';
         $text = "Are you sure you want to delete?";
+
         Alert::confirmDelete($title, $text);
-        
-        $roles = Role::get();
+
         return view('roles.index', compact('roles'));
     }
 
@@ -31,7 +36,7 @@ class RoleController extends Controller
         DB::statement("SET SQL_MODE=''");
         $role_permission = Permission::select('name','id')->groupBy('name')->get();
     
-        $custom_permission = array();
+        $custom_permission = [];
     
         foreach($role_permission as $per){
     
@@ -50,10 +55,10 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
         $request->validate([
-            'name' =>'required|string|max:255|unique:roles,name',
+           
         ]);
 
         $role = Role::create([
@@ -100,13 +105,8 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-         
-        $request->validate([
-            'name' => 'required|string|max:255|unique:roles,name,' . $role->id
-        ]);
-
         $role->update([
             "name" => $request->name
         ]);

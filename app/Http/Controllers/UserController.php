@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\UploadFile;
@@ -18,18 +20,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            $users = User::with('roles')
-                ->where('name', 'LIKE', '%'. $request->search. '%')
-                ->orWhere('email', 'LIKE', '%'. $request->search. '%')
-                ->paginate(); 
-        } else {
-
-        $users = User::with('roles')
+        $users = User::when($request->search, function($q) use ($request) {
+            return $q->where('name', 'LIKE', '%'. $request->search. '%')
+                     ->orWhere('email', 'LIKE', '%'. $request->search. '%');
+        })
         ->orderBy('id', 'desc')
         ->paginate();
-        }
 
+        // confirm delete
         $title = 'Delete User!';
         $text = "Are you sure you want to delete?";
         Alert::confirmDelete($title, $text);
@@ -50,15 +48,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'name' => ['required','string','max:255'],
-            'email' => ['required','string', 'email', 'unique:users'],
-            'password' => ['required','string','min:8', 'confirmed'],
-            'role' => ['required', 'exists:roles,name'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
-        ]);
         
         if($request->hasFile('image')) {
             $imageName = $this->uploadImage($request->image, User::IMAGE_PATH);
@@ -90,17 +81,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        
-        $request->validate([
-            'name' => ['required','string','max:255'],
-            'email' => ['required','string', 'email', 'unique:users,email,'. $user->id],
-            'password' => ['nullable','string','min:8', 'confirmed'],
-            'role' => ['required', 'exists:roles,name'],
-            'image' => ['nullable', 'image','mimes:jpeg,png,jpg','max:2048']
-        ]);
-
         if($request->hasFile('image')) {
             $imageName = $this->uploadImage($request->image, User::IMAGE_PATH, $user->image);
         }

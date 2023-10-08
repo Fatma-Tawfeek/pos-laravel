@@ -50,7 +50,7 @@
                         <select class="form-control" name="role">
                             <option value="">Select Role</option> 
                             @foreach ($roles as $role)
-                            <option value="{{ $role->name }}" {{ $user->roles->pluck('name') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>                                
+                            <option value="{{ $role->name }}" {{ in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $role->name }}</option>                                
                             @endforeach
                         </select>
                     </div>

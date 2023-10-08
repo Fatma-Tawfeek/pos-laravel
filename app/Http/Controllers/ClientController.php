@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,10 +14,6 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-        Alert::confirmDelete($title, $text); 
-
         $clients = Client::when($request->search, function($q) use ($request) {
 
             return $q->where('name', 'like', '%' . $request->search . '%')
@@ -25,6 +22,11 @@ class ClientController extends Controller
         })
         ->orderBy('id', 'desc')
         ->paginate();
+
+        // Delete confirmation
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        Alert::confirmDelete($title, $text); 
 
         return view('clients.index', compact('clients'));
     }
@@ -40,15 +42,8 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'array'],
-            'phone.0' => ['required'],
-            'address' => ['required', 'string']
-        ]);
-
         Client::create($request->all());
 
         Alert::toast('Success', 'Success');
@@ -67,15 +62,8 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client)
+    public function update(StoreClientRequest $request, Client $client)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'array'],
-            'phone.0' => ['required'],
-            'address' => ['required', 'string']
-        ]);
-
         $client->update($request->all());
 
         Alert::toast('Success', 'Success');

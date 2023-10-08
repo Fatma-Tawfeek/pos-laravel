@@ -15,6 +15,21 @@ class PermissionSeeder extends Seeder
     {
         DB::table('permissions')->insert([
             [
+                'name' => 'roles.view',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'roles.create',
+                'guard_name' => 'web'
+            ],
+            [   'name' => 'roles.edit',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'roles.delete',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'categories.view',
                 'guard_name' => 'web'
             ],

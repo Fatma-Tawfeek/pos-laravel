@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         Role::create([
-            'name' => 'Super Admin'
+            'name' => 'Super-Admin'
         ]);
 
         $user = \App\Models\User::factory()->create([
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        $user->assignRole('Super Admin');
+        $user->assignRole('Super-Admin');
 
 
         $this->call([

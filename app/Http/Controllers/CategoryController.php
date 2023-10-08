@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,14 +15,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            $categories = Category::where('name', 'LIKE', '%'. $request->search. '%')
-            ->orderBy('id', 'desc')
-            ->paginate(); 
-        } else {
-        $categories = Category::orderBy('id', 'desc')
+        $categories = Category::when($request->search, function ($q) use ($request) {
+            return $q->where('name', 'LIKE', '%'. $request->search. '%');
+        })
+        ->orderBy('id', 'desc')
         ->paginate();
-        }
 
         $title = 'Delete User!';
         $text = "Are you sure you want to delete?";
@@ -40,13 +39,8 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'name_ar' => ['required','string', 'unique_translation:categories,name','max:255'],
-            'name_en' => ['required','string', 'unique_translation:categories,name','max:255']
-        ]);
-
         Category::create([
             'name' => [
                'ar' => $request->name_ar,
@@ -70,13 +64,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $request->validate([
-            'name_ar' => ['required','string', 'max:255', 'unique_translation:categories,name,' . $category->id],
-            'name_en' => ['required','string', 'max:255', 'unique_translation:categories,name,' . $category->id]
-        ]);
-
         $category->update([
             'name' => [
                 'ar' => $request->name_ar,

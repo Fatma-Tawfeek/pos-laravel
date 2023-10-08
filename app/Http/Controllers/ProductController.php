@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Category;
 use App\Traits\UploadFile;
@@ -48,20 +50,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $request->validate([
-            'name_ar' => ['required', 'string', 'max:255', 'unique_translation:products,name'],
-            'name_en' => ['required', 'string', 'max:255', 'unique_translation:products,name'],
-            'desc_ar' => ['required', 'string'],
-            'desc_en' => ['required', 'string'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
-            'purchase_price' => ['required'],
-            'sale_price' => ['required'],
-            'stock' => ['required']
-        ]);
-
         if($request->hasFile('image')) {
             $imageName = $this->uploadImage($request->image, Product::IMAGE_PATH);
         }
@@ -100,19 +90,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $request->validate([
-            'name_ar' => ['required', 'string', 'max:255', 'unique_translation:products,name,' . $product->id],
-            'name_en' => ['required', 'string', 'max:255', 'unique_translation:products,name,' . $product->id],
-            'desc_ar' => ['required', 'string'],
-            'desc_en' => ['required', 'string'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
-            'purchase_price' => ['required'],
-            'sale_price' => ['required'],
-            'stock' => ['required']
-        ]);
 
         if($request->hasFile('image')) {
             $imageName = $this->uploadImage($request->image, Product::IMAGE_PATH, $product->image);
