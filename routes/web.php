@@ -26,19 +26,17 @@ Route::group([
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
 ], function () {
 
+    // Home route
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Categories routes
     Route::resource('categories', CategoryController::class)->except('show');
-    Route::get('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // Products routes
     Route::resource('products', ProductController::class)->except('show');
-    Route::get('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
     // Clients routes
     Route::resource('clients', ClientController::class)->except('show');    
-    Route::get('clients/{user}', [ClientController::class, 'destroy'])->name('clients.destroy');
     Route::resource('clients.orders', App\Http\Controllers\Client\OrderController::class)->except('show');
 
     // Orders routes
@@ -47,7 +45,6 @@ Route::group([
 
     // Users routes
     Route::resource('users', UserController::class)->except('show');    
-    Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
     // Roles routes
     Route::resource('roles', RoleController::class)->except('show');

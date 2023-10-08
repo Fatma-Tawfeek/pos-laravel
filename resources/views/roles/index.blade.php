@@ -46,19 +46,14 @@
                         <tr>
                             <th scope="row">{{$loop->iteration}}</th>
                             <td>{{$role->name}}</td>
-                            <td>
+                            <td width="60%">
                                 @foreach ($role->permissions as $permission)
-                                    {{-- <span class="badge badge-info">{{$permission->name}}</span> --}}
-                                    <span class="tag tag-green">{{$permission->name}}</span>
+                                    <span class="tag tag-green mb-1">{{$permission->name}}</span>
                                 @endforeach
                             </td>
                             <td>
                                 <a href="{{route('roles.edit', $role->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>ُEdit</a>
-                                <form action="{{route('roles.destroy', $role->id)}}" method="POST" class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"><span class="fe fe-trash-2"></span>Delete</button>
-                                </form>
+                                <a href="{{ route('roles.destroy', $role->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                 
                             </td>
                         </tr>
                         @endforeach

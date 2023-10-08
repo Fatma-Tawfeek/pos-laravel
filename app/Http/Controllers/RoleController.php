@@ -15,7 +15,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        Alert::confirmDelete($title, $text);
+        
+        $roles = Role::get();
         return view('roles.index', compact('roles'));
     }
 
@@ -70,9 +74,9 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        $role = Role::with('permissions')->find($id);
+        $role = Role::with('permissions')->find($role->id);
 
         DB::statement("SET SQL_MODE=''");
         $role_permission = Permission::select('name','id')->groupBy('name')->get();
@@ -96,13 +100,11 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
          
-        $role = Role::findOrFail($id);
-
         $request->validate([
-            'name' => 'required|string|max:255|unique:roles,name,' . $id
+            'name' => 'required|string|max:255|unique:roles,name,' . $role->id
         ]);
 
         $role->update([
@@ -119,10 +121,8 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        $role = Role::findOrFail($id);
-
         if(isset($role)) {        
             
         $role->permissions()->detach();
