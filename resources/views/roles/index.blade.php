@@ -28,9 +28,15 @@
             </div>
         </div>
         <div class="card-body">
+            @if(auth()->user()->can('orders.create'))                                
             <a class="btn btn-primary mb-3" href="{{ route('roles.create') }}">
                 <i class="fas fa-plus"></i> Add Role
             </a>
+            @else
+            <a class="btn btn-primary mb-3 disabled" href="{{ route('roles.create') }}">
+                <i class="fas fa-plus"></i> Add Role
+            </a>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered mg-b-0 text-md-nowrap">
                     <thead>
@@ -52,8 +58,17 @@
                                 @endforeach
                             </td>
                             <td>
+                                @if(auth()->user()->can('roles.edit'))                                
                                 <a href="{{route('roles.edit', $role->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>ُEdit</a>
-                                <a href="{{ route('roles.destroy', $role->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                 
+                                @else
+                                <a href="{{route('roles.edit', $role->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>ُEdit</a>
+                                @endif
+                                
+                                @if(auth()->user()->can('roles.delete'))                                
+                                <a href="{{ route('roles.destroy', $role->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>  
+                                @else
+                                <a href="{{ route('roles.destroy', $role->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>  
+                                @endif               
                             </td>
                         </tr>
                         @endforeach

@@ -14,6 +14,14 @@ class ProductController extends Controller
 {
 
     use UploadFile;
+
+    public function __construct()
+    {
+        $this->middleware('permission:products.view')->only('index');
+        $this->middleware('permission:products.create')->only('create');
+        $this->middleware('permission:products.edit')->only('edit');
+        $this->middleware('permission:products.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

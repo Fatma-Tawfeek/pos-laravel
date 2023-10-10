@@ -8,21 +8,27 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:orders.view')->only('index');
+        $this->middleware('permission:orders.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-        Alert::confirmDelete($title, $text);
-        
         $orders = Order::whereHas('client', function ($q) use ($request) {
            return $q->where('name', 'like', '%' . $request->search . '%');
         })
         ->with('client')
         ->orderBy('id','desc')
         ->paginate();
+
+        // Delete Confirmation        
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        Alert::confirmDelete($title, $text);        
 
         return view('orders.index', compact('orders'));
     }

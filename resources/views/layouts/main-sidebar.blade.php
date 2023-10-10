@@ -39,7 +39,7 @@
 						</a>
 					</li>
 
-
+					@can('categories.view')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('categories.index') }}">
 							<?xml version="1.0" ?>
@@ -51,8 +51,10 @@
 							</svg>
 							<span class="side-menu__label">Categories</span>
 						</a>
-					</li>
-
+					</li>						
+					@endcan
+					
+					@can('products.view')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('products.index') }}">
 							<?xml version="1.0" ?>
@@ -62,7 +64,9 @@
 							<span class="side-menu__label">Products</span>
 						</a>
 					</li>
+					@endcan
 
+					@can('clients.view')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('clients.index') }}">
 							<?xml version="1.0" ?>
@@ -72,7 +76,9 @@
 							<span class="side-menu__label">Clients</span>
 						</a>
 					</li>
+					@endcan
 
+					@can('orders.view')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('orders.index') }}">
 							<?xml version="1.0" ?>
@@ -81,8 +87,10 @@
 							</svg>
 							<span class="side-menu__label">Orders</span>
 						</a>
-					</li>
+					</li>						
+					@endcan
 
+					@can('roles.view')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('roles.index') }}">
 							<?xml version="1.0" ?><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon">
@@ -91,7 +99,9 @@
 							<span class="side-menu__label mt-2">Roles</span>
 						</a>
 					</li>
+					@endcan
 
+					@can('users.view')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('users.index') }}">
 							<?xml version="1.0" ?>
@@ -101,6 +111,7 @@
 							<span class="side-menu__label">{{ trans('users.title') }}</span>
 						</a>
 					</li>
+					@endcan
 
 				</ul>
 			</div>

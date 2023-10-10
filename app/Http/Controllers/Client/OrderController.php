@@ -13,6 +13,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:orders.create')->only('create');
+        $this->middleware('permission:orders.edit')->only('edit');
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Exception;
 use Throwable;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,4 +29,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // public function render($request, Exception $exception)
+    // {
+    //     if (!$request->expectsJson() && $exception instanceof MethodNotAllowedHttpException) {
+    //         return redirect('home');
+    //     } 
+
+    //     return parent::render($request, $exception);
+    // }
 }

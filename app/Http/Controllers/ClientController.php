@@ -9,6 +9,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:clients.view')->only('index');
+        $this->middleware('permission:clients.create')->only('create');
+        $this->middleware('permission:clients.edit')->only('edit');
+        $this->middleware('permission:clients.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

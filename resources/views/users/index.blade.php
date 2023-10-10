@@ -30,11 +30,19 @@
         <div class="card-body">
             <div class="row">
 
+                @if(auth()->user()->can('users.create')) 
                 <div class="col-md-7">
                 <a class="btn btn-primary mb-3" href="{{ route('users.create') }}">
                   <i class="fas fa-plus"></i> Add User
                 </a>
                 </div>
+                @else
+                <div class="col-md-7">
+                    <a class="btn btn-primary mb-3 disabled" href="{{ route('users.create') }}">
+                      <i class="fas fa-plus"></i> Add User
+                    </a>
+                </div>
+                @endif
                 
                 <div class="col-md-5">
                 <form action="{{ route('users.index') }}" method="get">
@@ -73,9 +81,19 @@
                                 @endforeach 
                             </td>
                             <td>
+                                @if(auth()->user()->can('users.edit')) 
                                 <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
+                                @else
+                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                @endif
 
-                                <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                
+                                @if ($user->id == 1 || !(auth()->user()->can('users.delete')))
+                                  <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                @else   
+                                  <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                @endif
+
                             </td>
                         </tr>
                         @empty

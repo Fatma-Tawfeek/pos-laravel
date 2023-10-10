@@ -30,13 +30,19 @@
         <div class="card-body">
             <div class="row">
 
-                @can('products.create')
+                @if(auth()->user()->can('products.create'))
                 <div class="col-md-5">
                     <a class="btn btn-primary mb-3" href="{{ route('products.create') }}">
                       <i class="fas fa-plus"></i> Add Product
                     </a>
                 </div>
-                @endcan       
+                @else
+                <div class="col-md-5">
+                    <a class="btn btn-primary mb-3 disabled" href="{{ route('products.create') }}">
+                      <i class="fas fa-plus"></i> Add Product
+                    </a>
+                </div>
+                @endif    
                          
                 <div class="col-md-7">
                 <form action="{{ route('products.index') }}" method="get">
@@ -86,13 +92,17 @@
                             <td>{{ $product->stock }}</td>
                             <td>
 
-                                @can('products.edit')
+                                @if(auth()->user()->can('products.edit'))
                                 <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
-                                @endcan
+                                @else
+                                <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                @endif
 
-                                @can('products.delete')
-                                <a href="{{ route('products.destroy', $product->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                                    
-                                @endcan
+                                @if(auth()->user()->can('products.delete'))
+                                <a href="{{ route('products.destroy', $product->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>  
+                                @else
+                                <a href="{{ route('products.destroy', $product->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                                                                      
+                                @endif
 
                             </td>
                         </tr>

@@ -30,11 +30,19 @@ Clients
         <div class="card-body">
             <div class="row">
 
+                @if(auth()->user()->can('clients.create'))
                 <div class="col-md-7">
                 <a class="btn btn-primary mb-3" href="{{ route('clients.create') }}">
                   <i class="fas fa-plus"></i> Add Client
                 </a>
                 </div>
+                @else
+                <div class="col-md-7">
+                    <a class="btn btn-primary mb-3 disabled" href="{{ route('clients.create') }}">
+                      <i class="fas fa-plus"></i> Add Client
+                    </a>
+                </div>
+                @endif
                 
                 <div class="col-md-5">
                 <form action="{{ route('clients.index') }}" method="get">
@@ -65,11 +73,25 @@ Clients
                             <td>{{ $client->name }}</td>
                             <td>{{ is_array($client->phone) ? implode(' - ', array_filter($client->phone)) : $client->phone }}</td>
                             <td>{{ $client->address }}</td>
-                            <td><a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm">Add Order</a></td>
                             <td>
+                                @if(auth()->user()->can('orders.create'))                                
+                                <a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm">Add Order</a>
+                                @else
+                                <a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm disabled">Add Order</a>
+                                @endif
+                            </td>
+                            <td>
+                                @if(auth()->user()->can('clients.edit'))                                
                                 <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
+                                @else
+                                <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                @endif
 
+                                @if(auth()->user()->can('clients.delete'))                                
                                 <a href="{{ route('clients.destroy', $client->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                @else
+                                <a href="{{ route('clients.destroy', $client->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                @endif
                             </td>
                         </tr>
                         @empty

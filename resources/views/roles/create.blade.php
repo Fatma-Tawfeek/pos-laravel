@@ -59,7 +59,7 @@
                                             <td class="p-6">
                                                 <b>{{ ucfirst($key) }}</b>
                                             </td>
-                                            <td class="p-6" width="30%">
+                                            <td class="p-6">
                                                 <label>
                                                     <input class="selectall" type="checkbox">
                                                     {{__('Select All') }}
@@ -68,7 +68,7 @@
                                             <td class="p-6">                            
                                                 @forelse($group as $permission)
                             
-                                                <label style="width: 30%" class="">
+                                                <label>
                                                     <input name="permissions[]" class="permissioncheckbox" class="rounded-md border" type="checkbox" value="{{ $permission->id }}">
                                                     {{$permission->name}} &nbsp;&nbsp;
                                                 </label>                            

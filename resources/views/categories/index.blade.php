@@ -30,13 +30,19 @@
         <div class="card-body">
             <div class="row">
 
-                @can('categories.create')
-                <div class="col-md-7">
-                    <a class="btn btn-primary mb-3" href="{{ route('categories.create') }}">
-                      <i class="fas fa-plus"></i> Add Category
-                    </a>
+                @if(auth()->user()->can('categories.create'))
+                    <div class="col-md-7">
+                        <a class="btn btn-primary mb-3" href="{{ route('categories.create') }}">
+                        <i class="fas fa-plus"></i> Add Category
+                        </a>
                     </div>
-                @endcan       
+                @else
+                <div class="col-md-7">
+                    <a class="btn btn-primary mb-3 disabled" href="{{ route('categories.create') }}">
+                    <i class="fas fa-plus"></i> Add Category
+                    </a>
+                </div>
+                @endif       
                          
                 <div class="col-md-5">
                 <form action="{{ route('categories.index') }}" method="get">
@@ -68,13 +74,17 @@
                             <td><a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="btn btn-info btn-sm">Related Products</a></td>
                             <td>
 
-                                @can('categories.edit')
+                                @if(auth()->user()->can('categories.edit'))
                                 <a href="{{route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
-                                @endcan
+                                @else
+                                <a href="{{route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                @endif
 
-                                @can('categories.delete')
+                                @if(auth()->user()->can('categories.delete'))
                                 <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                                    
-                                @endcan
+                                @else
+                                <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>                                    
+                                @endif
 
                             </td>
                         </tr>

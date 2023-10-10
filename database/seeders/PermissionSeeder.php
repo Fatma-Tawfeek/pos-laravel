@@ -30,6 +30,21 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'users.view',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'users.create',
+                'guard_name' => 'web'
+            ],
+            [   'name' => 'users.edit',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'users.delete',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'categories.view',
                 'guard_name' => 'web'
             ],

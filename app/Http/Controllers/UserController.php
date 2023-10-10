@@ -90,7 +90,7 @@ class UserController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => bcrypt($request->password) ?? $user->password,
             'image' => $imageName ?? $user->image
         ]);
 

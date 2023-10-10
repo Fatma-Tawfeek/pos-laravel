@@ -62,9 +62,20 @@ Orders
                                     <span class="fe fe-list"></span>
                                     Show
                                     </button>
+
+                                    @if(auth()->user()->can('orders.edit'))                                
                                     <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
-    
+                                    @else
+                                    <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                    @endif
+
+                                    @if(auth()->user()->can('orders.delete'))                                
                                     <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                    @else
+                                    <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                    @endif
+
+
                                 </td>
                             </tr>
                             @empty
