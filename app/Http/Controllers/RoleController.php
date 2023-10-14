@@ -24,12 +24,13 @@ class RoleController extends Controller
      */
     public function index()
     {        
-        $roles = Role::get();
+        $roles = Role::
+        orderBy('id', 'desc')
+        ->get();
 
         // Delete confirmation        
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-
+        $title = trans('roles.delete_msg_title');
+        $text = trans('roles.delete_msg_desc');
         Alert::confirmDelete($title, $text);
 
         return view('roles.index', compact('roles'));
@@ -78,7 +79,7 @@ class RoleController extends Controller
             }
         }
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
     
         return redirect()->route('roles.index');
     }
@@ -120,7 +121,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->permissions);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('roles.index');
     }
@@ -135,7 +136,7 @@ class RoleController extends Controller
         $role->permissions()->detach();
         $role->delete();
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
         return redirect()->route('roles.index');
         
         }

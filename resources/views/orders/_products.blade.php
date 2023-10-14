@@ -3,9 +3,9 @@
         <table class="table table-bordered mg-b-0 text-md-nowrap">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>@lang('orders.product_name')</th>
+                    <th>@lang('orders.quantity')</th>
+                    <th>@lang('orders.product_price')</th>
                 </tr>
             </thead>
             <tbody>  
@@ -18,7 +18,7 @@
                 @endforeach         
             </tbody>
         </table>
-        <h3 class="mt-2">Total : <span>{{ number_format($order->total_price, 2) }}</span></h3>         
+        <h3 class="mt-2">@lang('orders.total') : <span>{{ number_format($order->total_price, 2) }}</span></h3>         
     </div>   
-    <button class="btn btn-primary btn-block print-btn"><i class="fas fa-print mx-1"></i>print</button> 
+    <button class="btn btn-primary btn-block print-btn"><i class="fas fa-print mx-1"></i>@lang('orders.print')</button> 
 </div>

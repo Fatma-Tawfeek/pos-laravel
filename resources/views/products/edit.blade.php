@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Edit Product
+@lang('products.title')
 @endsection
 
 @section('page-header')
@@ -9,8 +9,9 @@ Edit Product
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">Forms</h4>
-            <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Form-Validation</span>
+            <h4 class="content-title mb-0 my-auto">@lang('home.title')</h4>
+            <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @lang('products.title')</span>
+            <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @lang('products.edit_title')</span>
         </div>
     </div>
 </div>
@@ -23,7 +24,7 @@ Edit Product
     <div class="col-md-12 col-sm-12">
         <div class="card  box-shadow-0">
             <div class="card-header">
-                <h4 class="card-title mb-1">Edit Product Form</h4>
+                <h4 class="card-title mb-1">@lang('products.edit_form_title')</h4>
             </div>
             <div class="card-body pt-0">
                 @if ($errors->any())
@@ -39,9 +40,9 @@ Edit Product
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="inputCategory">Category</label>
+                        <label for="inputCategory">@lang('products.category')</label>
                         <select name="category_id" id="inputCategory" class="form-control">
-                            <option value="">Select Category</option>
+                            <option value="">@lang('products.select_category')</option>
                             @foreach ($categories as $category )
                             <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>                                
                             @endforeach
@@ -49,44 +50,44 @@ Edit Product
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="inputName">Name <small class="text-danger">(العربية)</small></label>
-                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name_ar" value="{{ $product->getTranslation('name', 'ar') }}">
+                            <label for="inputName">@lang('products.name') <small class="text-danger">(@lang('products.arabic'))</small></label>
+                            <input type="text" class="form-control" id="inputName" placeholder="@lang('products.name')" name="name_ar" value="{{ $product->getTranslation('name', 'ar') }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputName">Name <small class="text-danger">(English)</small></label>
-                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name_en" value="{{ $product->getTranslation('name', 'en') }}">
+                            <label for="inputName">@lang('products.name') <small class="text-danger">(@lang('products.english'))</small></label>
+                            <input type="text" class="form-control" id="inputName" placeholder="@lang('products.name')" name="name_en" value="{{ $product->getTranslation('name', 'en') }}">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="inputDesc">Description <small class="text-danger">(العربية)</small></label>
-                            <textarea name="desc_ar" class="form-control" id="editor_ar" cols="30" rows="10" placeholder="Description in Arabic">{{ $product->getTranslation('description', 'ar') }}</textarea>
+                            <label for="inputDesc">@lang('products.description') <small class="text-danger">(@lang('products.arabic'))</small></label>
+                            <textarea name="desc_ar" class="form-control" id="editor_ar" cols="30" rows="10" placeholder="@lang('products.description')">{{ $product->getTranslation('description', 'ar') }}</textarea>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputDesc">Description <small class="text-danger">(English)</small></label>
-                            <textarea name="desc_en" class="form-control" id="editor_en" cols="30" rows="10" placeholder="Description in English">{{ $product->getTranslation('description', 'en') }}</textarea>
+                            <label for="inputDesc">@lang('products.description') <small class="text-danger">(English)</small></label>
+                            <textarea name="desc_en" class="form-control" id="editor_en" cols="30" rows="10" placeholder="@lang('products.description')">{{ $product->getTranslation('description', 'en') }}</textarea>
                         </div>     
                     </div>  
                     <div class="form-group">
-                        <label for="formFile" class="form-label">Image</label> 
+                        <label for="formFile" class="form-label">@lang('products.image')</label> 
                         <img src="{{ asset('images/products/' . $product->image) }}" alt="" width="100" class="img-thumbnail" id="blah">
                     </div>
                     <div class="mb-3">
                         <input class="form-control" type="file" name="image" accept="image/*" id="imgInp"> 
                     </div>   
                     <div class="form-group">
-                        <label for="inputName">Purchase Price</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="Purchase Price" step="0.01"  name="purchase_price" value="{{ $product->purchase_price }}">
+                        <label for="inputName">@lang('products.purchase_price')</label>
+                        <input type="number" class="form-control" id="inputName" placeholder="@lang('products.purchase_price')" step="0.01"  name="purchase_price" value="{{ $product->purchase_price }}">
                     </div>  
                     <div class="form-group">
-                        <label for="inputName">Sale Price</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="Sale Price" step="0.01" name="sale_price" value="{{ $product->sale_price }}">
+                        <label for="inputName">@lang('products.sale_price')</label>
+                        <input type="number" class="form-control" id="inputName" placeholder="@lang('products.sale_price')" step="0.01" name="sale_price" value="{{ $product->sale_price }}">
                     </div>   
                     <div class="form-group">
-                        <label for="inputName">Stock</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="Stock" name="stock" value="{{ $product->stock }}">
+                        <label for="inputName">@lang('products.stock')</label>
+                        <input type="number" class="form-control" id="inputName" placeholder="@lang('products.stock')" name="stock" value="{{ $product->stock }}">
                     </div>        
                     <div class="form-group mb-0 mt-3 justify-content-end">
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <button type="submit" class="btn btn-primary">@lang('products.edit_btn')</button>
                     </div>
                 </form>
             </div>

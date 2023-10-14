@@ -39,8 +39,8 @@ class ProductController extends Controller
         ->paginate();
 
         // confirm delete
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = trans('products.delete_msg_title');
+        $text = trans('products.delete_msg_desc');
         Alert::confirmDelete($title, $text);
 
         return view('products.index', compact('products', 'categories'));
@@ -80,7 +80,7 @@ class ProductController extends Controller
             'stock' => $request->stock
         ]);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('products.index');
     }
@@ -121,7 +121,7 @@ class ProductController extends Controller
             'stock' => $request->stock
         ]);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('products.index');
     }
@@ -138,7 +138,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('products.index');
     }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Clients
+@lang('clients.title')
 @endsection
 
 @section('page-header')
@@ -9,8 +9,8 @@ Clients
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Forms</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Clients</span>
+                <h4 class="content-title mb-0 my-auto">@lang('home.title')</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @lang('clients.title')</span>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@ Clients
     <div class="card mg-b-20">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title mg-b-0">Clients<small>{{ $clients->total() }}</small></h4>
+                <h4 class="card-title mg-b-0">@lang('clients.title')<small>{{ $clients->total() }}</small></h4>
             </div>
         </div>
         <div class="card-body">
@@ -33,13 +33,13 @@ Clients
                 @if(auth()->user()->can('clients.create'))
                 <div class="col-md-7">
                 <a class="btn btn-primary mb-3" href="{{ route('clients.create') }}">
-                  <i class="fas fa-plus"></i> Add Client
+                  <i class="fas fa-plus"></i> @lang('clients.add_client')
                 </a>
                 </div>
                 @else
                 <div class="col-md-7">
                     <a class="btn btn-primary mb-3 disabled" href="{{ route('clients.create') }}">
-                      <i class="fas fa-plus"></i> Add Client
+                      <i class="fas fa-plus"></i> @lang('clients.add_client')
                     </a>
                 </div>
                 @endif
@@ -47,8 +47,8 @@ Clients
                 <div class="col-md-5">
                 <form action="{{ route('clients.index') }}" method="get">
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="Search with Name, Phone or Adderess....." name="search" value="{{ request()->search }}">
-                        <button class="btn ripple btn-primary mx-2" type="submit"><i class="fas fa-search mx-1"></i>Search</button>
+                        <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="@lang('clients.search_pacehoder')" name="search" value="{{ request()->search }}">
+                        <button class="btn ripple btn-primary mx-2" type="submit"><i class="fas fa-search mx-1"></i>@lang('clients.search_btn')</button>
                     </div>
                 </form>   
                 </div>             
@@ -59,11 +59,11 @@ Clients
                     <thead>
                         <tr>
                             <th>#</th>                            
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Add Order</th>
-                            <th>Actions</th>
+                            <th>@lang('clients.name')</th>
+                            <th>@lang('clients.phone')</th>
+                            <th>@lang('clients.address')</th>
+                            <th>@lang('clients.add_order')</th>
+                            <th>@lang('clients.actions')</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,27 +75,27 @@ Clients
                             <td>{{ $client->address }}</td>
                             <td>
                                 @if(auth()->user()->can('orders.create'))                                
-                                <a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm">Add Order</a>
+                                <a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm">@lang('clients.add_order')</a>
                                 @else
-                                <a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm disabled">Add Order</a>
+                                <a href="{{ route('clients.orders.create', $client) }}" class="btn btn-info btn-sm disabled">@lang('clients.add_order')</a>
                                 @endif
                             </td>
                             <td>
                                 @if(auth()->user()->can('clients.edit'))                                
-                                <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
+                                <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>@lang('clients.edit')</a>
                                 @else
-                                <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                <a href="{{route('clients.edit', $client->id)}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>@lang('clients.edit')</a>
                                 @endif
 
                                 @if(auth()->user()->can('clients.delete'))                                
-                                <a href="{{ route('clients.destroy', $client->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                <a href="{{ route('clients.destroy', $client->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>@lang('clients.delete')</a>
                                 @else
-                                <a href="{{ route('clients.destroy', $client->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                <a href="{{ route('clients.destroy', $client->id) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>@lang('clients.delete')</a>
                                 @endif
                             </td>
                         </tr>
                         @empty
-                            <p>There is no clients</p>
+                            <p>@lang('clients.no_clients')</p>
                         @endforelse
                     </tbody>
                 </table>

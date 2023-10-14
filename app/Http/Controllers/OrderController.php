@@ -26,8 +26,8 @@ class OrderController extends Controller
         ->paginate();
 
         // Delete Confirmation        
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = trans('orders.delete_msg_title');
+        $text = trans('orders.delete_msg_desc');
         Alert::confirmDelete($title, $text);        
 
         return view('orders.index', compact('orders'));

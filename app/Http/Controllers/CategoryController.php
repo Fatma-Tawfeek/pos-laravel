@@ -29,8 +29,8 @@ class CategoryController extends Controller
         ->orderBy('id', 'desc')
         ->paginate();
 
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = trans('categories.delete_msg_title');
+        $text = trans('categories.delete_msg_desc');
         Alert::confirmDelete($title, $text);
 
         return view('categories.index', compact('categories'));
@@ -56,7 +56,7 @@ class CategoryController extends Controller
             ]
          ]);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('categories.index');
     }
@@ -81,7 +81,7 @@ class CategoryController extends Controller
              ]
         ]);
 
-        Alert::toast('Toast Message', 'info');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('categories.index');
     }
@@ -93,7 +93,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('categories.index');
 

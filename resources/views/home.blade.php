@@ -4,7 +4,7 @@
 <link href="{{URL::asset('assets/plugins/morris.js/morris.css')}}" rel="stylesheet">
 @endsection
 @section('title')
-    Dashboard
+    @lang('home.title')
 @endsection
 
 @section('page-header')
@@ -12,8 +12,7 @@
 	<div class="breadcrumb-header justify-content-between">
 		<div class="left-content">
 			<div>
-				<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi, welcome back!</h2>
-				<p class="mg-b-0">Sales monitoring dashboard template.</p>
+				<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">@lang('home.hi')</h2>
 			</div>
 		</div>
 	</div>
@@ -26,7 +25,7 @@
 		<div class="card overflow-hidden sales-card bg-primary-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">Categories</h6>
+					<h6 class="mb-3 tx-12 text-white">@lang('categories.title')</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -43,7 +42,7 @@
 		<div class="card overflow-hidden sales-card bg-danger-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">Products</h6>
+					<h6 class="mb-3 tx-12 text-white">@lang('products.title')</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -60,7 +59,7 @@
 		<div class="card overflow-hidden sales-card bg-success-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">Orders</h6>
+					<h6 class="mb-3 tx-12 text-white">@lang('orders.title')</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -77,7 +76,7 @@
 		<div class="card overflow-hidden sales-card bg-warning-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">Users</h6>
+					<h6 class="mb-3 tx-12 text-white">@lang('users.title')</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -99,9 +98,8 @@
 				<div class="card mg-b-20">
 					<div class="card-body">
 						<div class="main-content-label mg-b-5">
-							Line Chart
+							@lang('home.chart')
 						</div>
-						<p class="mg-b-20">Basic Charts Of Valex template.</p>
 						<div class="morris-wrapper-demo" id="morrisLine1"></div>
 					</div>
 				</div>
@@ -138,7 +136,7 @@
 		],
 		xkey: 'ym',
 		ykeys:  ['sum'],
-		labels: ['total'],
+		labels: ["@lang('home.total')"],
 		lineWidth: 2,
 		ymax: 'auto 100',
 		gridTextSize: 11,

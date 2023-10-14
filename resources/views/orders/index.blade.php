@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Orders
+@lang('orders.title')
 @endsection
 
 @section('page-header')
@@ -9,8 +9,8 @@ Orders
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Forms</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Orders</span>
+                <h4 class="content-title mb-0 my-auto">@lang('home.title')</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @lang('orders.title')</span>
             </div>
         </div>
     </div>
@@ -25,15 +25,15 @@ Orders
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">Orders<small>{{ $orders->total() }}</small></h4>
+                    <h4 class="card-title mg-b-0">@lang('orders.title')<small>{{ $orders->total() }}</small></h4>
                 </div>
             </div>
             <div class="card-body">
 
                     <form action="{{ route('orders.index') }}" method="get">
                         <div class="input-group mb-2">
-                            <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="Search with Client Name....." name="search" value="{{ request()->search }}">
-                            <button class="btn ripple btn-primary mx-2" type="submit"><i class="fas fa-search mx-1"></i>Search</button>
+                            <input type="text" class="form-control rounded-3 br-te-0 br-be-0" placeholder="@lang('orders.search_pacehoder')" name="search" value="{{ request()->search }}">
+                            <button class="btn ripple btn-primary mx-2" type="submit"><i class="fas fa-search mx-1"></i>@lang('orders.search_btn')</button>
                         </div>
                     </form>   
 
@@ -42,10 +42,10 @@ Orders
                         <thead>
                             <tr>
                                 <th>#</th>                            
-                                <th>Client Name</th>
-                                <th>Price</th>
-                                <th>Created At</th>
-                                <th>Actions</th>
+                                <th>@lang('orders.name')</th>
+                                <th>@lang('orders.price')</th>
+                                <th>@lang('orders.created_at')</th>
+                                <th>@lang('orders.actions')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,26 +60,26 @@ Orders
                                     data-url="{{ route('orders.products', $order->id) }}"
                                     >
                                     <span class="fe fe-list"></span>
-                                    Show
+                                    @lang('orders.show')
                                     </button>
 
                                     @if(auth()->user()->can('orders.edit'))                                
-                                    <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>Edit</a>
+                                    <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm"><span class="fe fe-edit"></span>@lang('orders.edit')</a>
                                     @else
-                                    <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>Edit</a>
+                                    <a href="{{route('clients.orders.edit', ['client' => $order->client, 'order' => $order])}}" class="btn btn-primary btn-sm disabled"><span class="fe fe-edit"></span>@lang('orders.edit')</a>
                                     @endif
 
                                     @if(auth()->user()->can('orders.delete'))                                
-                                    <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                    <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm" data-confirm-delete="true"><span class="fe fe-trash-2"></span>@lang('orders.delete')</a>
                                     @else
-                                    <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>Delete</a>
+                                    <a href="{{ route('orders.destroy', $order) }}" class="btn btn-danger btn-sm disabled" data-confirm-delete="true"><span class="fe fe-trash-2"></span>@lang('orders.delete')</a>
                                     @endif
 
 
                                 </td>
                             </tr>
                             @empty
-                                <p>There is no orders</p>
+                                <p>@lang('orders.no_orders')</p>
                             @endforelse
                         </tbody>
                     </table>
@@ -94,7 +94,7 @@ Orders
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">Products</small></h4>
+                    <h4 class="card-title mg-b-0">@lang('orders.products')</small></h4>
                 </div>
             </div>
             <div class="card-body pb-0 px-4">

@@ -28,8 +28,8 @@ class UserController extends Controller
         ->paginate();
 
         // confirm delete
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = trans('users.delete_msg_title');
+        $text = trans('users.delete_msg_desc');
         Alert::confirmDelete($title, $text);
 
         return view('users.index', compact('users'));
@@ -64,7 +64,7 @@ class UserController extends Controller
 
         $user->assignRole($request->role);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('users.index');
     }
@@ -96,7 +96,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->role);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('users.index');
     }
@@ -113,7 +113,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('users.index');
     }

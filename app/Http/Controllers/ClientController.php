@@ -31,8 +31,8 @@ class ClientController extends Controller
         ->paginate();
 
         // Delete confirmation
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = trans('clients.delete_msg_title');
+        $text = trans('clients.delete_msg_desc');
         Alert::confirmDelete($title, $text); 
 
         return view('clients.index', compact('clients'));
@@ -53,7 +53,7 @@ class ClientController extends Controller
     {
         Client::create($request->all());
 
-        Alert::toast('Success', 'Success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('clients.index');
     }
@@ -73,7 +73,7 @@ class ClientController extends Controller
     {
         $client->update($request->all());
 
-        Alert::toast('Success', 'Success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('clients.index');
     }
@@ -85,7 +85,7 @@ class ClientController extends Controller
     {
         $client->delete();
 
-        Alert::toast('Success', 'Success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('clients.index');
     }
