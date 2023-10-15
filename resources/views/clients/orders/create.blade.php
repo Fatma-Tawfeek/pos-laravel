@@ -51,7 +51,7 @@ Add Order
                                     <tr>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->stock }}</td>
-                                        <td>{{ number_format($product->sale_price, 2) }}</td>
+                                        <td>{{ number_format($product->sale_price, 2) }} {{ app('settings')['currency'] }}</td>
                                         <td>
                                             <a 
                                             href="#" 
@@ -107,7 +107,7 @@ Add Order
                             </tbody>
                         </table>                    
                     </div>
-                    <h4>Total : <span class="total-price">0</span> </h4>
+                    <h4>Total : <span class="total-price">0</span> {{ app('settings')['currency'] }} </h4>
                     <button class="btn btn-primary btn-block disabled" type="submit" id="add-order-form-btn">Add Order</button>
                 </form>
             </div>

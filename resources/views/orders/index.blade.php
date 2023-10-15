@@ -53,7 +53,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $order->client->name }}</td>
-                                <td>{{ number_format($order->total_price, 2) }}</td>
+                                <td>{{ number_format($order->total_price, 2) }} {{ app('settings')['currency'] }}</td>
                                 <td>{{ $order->created_at->toFormattedDateString() }}</td>
                                 <td>
                                     <button class="btn btn-info btn-sm order-products"

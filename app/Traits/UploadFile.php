@@ -11,9 +11,9 @@ trait UploadFile {
             $this->deleteImage($old_file, $path);
         }
         Image::make($image)
-        ->resize(300, null, function ($constraint) {
-            $constraint->aspectRatio();
-        })
+        // ->resize(300, null, function ($constraint) {
+        //     $constraint->aspectRatio();
+        // })
         ->save(public_path($path . '/' . $image->hashName()));
         return $image->hashName();
     }

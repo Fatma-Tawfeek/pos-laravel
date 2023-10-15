@@ -13,6 +13,7 @@
 		<div class="left-content">
 			<div>
 				<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">@lang('home.hi')</h2>
+				<p class="mb-0 text-muted">{{ app('settings')['description'] }}</p>
 			</div>
 		</div>
 	</div>

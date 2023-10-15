@@ -1,5 +1,5 @@
 <!-- Title -->
-<title>@yield('title')</title>
+<title>@yield('title')  | {{ app('settings')['app_name'] }}</title>
 <!-- Favicon -->
 <link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
 <!-- Icons css -->

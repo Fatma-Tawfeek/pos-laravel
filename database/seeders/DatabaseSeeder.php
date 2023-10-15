@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
-            ClientSeeder::class
+            ClientSeeder::class,
+            SettingSeeder::class
         ]);
     }
 }

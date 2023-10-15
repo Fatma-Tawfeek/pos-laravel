@@ -86,8 +86,8 @@
                             <td>{{$product->name}}</td>
                             <td>{!! Str::limit($product->description, 15) !!}</td>
                             <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->purchase_price }}</td>
-                            <td>{{ $product->sale_price }}</td>
+                            <td>{{ $product->purchase_price }} {{ app('settings')['currency'] }}</td>
+                            <td>{{ $product->sale_price }} {{ app('settings')['currency'] }}</td>
                             <td>{{ $product->profit_percent }} %</td>
                             <td>{{ $product->stock }}</td>
                             <td>

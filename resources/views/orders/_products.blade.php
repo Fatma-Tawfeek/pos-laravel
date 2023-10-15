@@ -13,12 +13,12 @@
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->pivot->quantity }}</td>
-                    <td>{{ number_format($product->pivot->quantity * $product->sale_price, 2) }}</td>
+                    <td>{{ number_format($product->pivot->quantity * $product->sale_price, 2) }} {{ app('settings')['currency'] }}</td>
                  </tr>
                 @endforeach         
             </tbody>
         </table>
-        <h3 class="mt-2">@lang('orders.total') : <span>{{ number_format($order->total_price, 2) }}</span></h3>         
+        <h3 class="mt-2">@lang('orders.total') : <span>{{ number_format($order->total_price, 2) }} {{ app('settings')['currency'] }}</span></h3>         
     </div>   
     <button class="btn btn-primary btn-block print-btn"><i class="fas fa-print mx-1"></i>@lang('orders.print')</button> 
 </div>
