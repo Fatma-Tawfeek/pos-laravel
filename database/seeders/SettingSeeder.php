@@ -18,7 +18,6 @@ class SettingSeeder extends Seeder
             ['key' => 'description', 'value' => 'Point of Sale system.'],
             ['key' => 'currency', 'value' => 'EGP'],
             ['key' => 'logo', 'value' => 'logo.png'],
-            ['key' => 'default_warehouse', 'value' => 1],
             ['key' => 'favicon', 'value' => 'favicon.png'],
         ];
         Setting::insert($settings);

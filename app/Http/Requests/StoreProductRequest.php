@@ -27,6 +27,7 @@ class StoreProductRequest extends FormRequest
             'desc_ar' => ['required', 'string'],
             'desc_en' => ['required', 'string'],
             'category_id' => ['required', 'exists:categories,id'],
+            'warehouse_id' => ['required', 'exists:warehouses,id'],
             'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'purchase_price' => ['required'],
             'sale_price' => ['required'],

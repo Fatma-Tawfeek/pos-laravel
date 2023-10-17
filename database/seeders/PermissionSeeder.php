@@ -48,6 +48,21 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'warehouses.view',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'warehouses.create',
+                'guard_name' => 'web'
+            ],
+            [   'name' => 'warehouses.edit',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'warehouses.delete',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'categories.view',
                 'guard_name' => 'web'
             ],

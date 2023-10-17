@@ -9,6 +9,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\WarehouseController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -32,6 +33,9 @@ Route::group([
 
     // Categories routes
     Route::resource('categories', CategoryController::class)->except('show');
+
+    // Warehouses routes
+    Route::resource('warehouses', WarehouseController::class)->except('show');
 
     // Products routes
     Route::resource('products', ProductController::class)->except('show');

@@ -3,15 +3,17 @@
 declare(strict_types=1);
 
 return [
-    'title'   => 'products',
+    'title'   => 'Products',
     'add_product' => 'Add Product',
     'search_placeholder' => 'Search with Name ....',
     'search_btn' => 'search',
     'select_category' => 'Select Category',
+    'select_warehouse' => 'Select Warehouse',
     'image' => 'Image',
     'name' => 'Name',
     'description' => 'Description',
     'category' => 'Category',
+    'warehouse' => 'Warehouse',
     'purchase_price' => 'Purchase Price',
     'sale_price' => 'Sale Price',
     'profit_percent' => 'Profit Percent',

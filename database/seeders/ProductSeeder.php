@@ -23,6 +23,7 @@ class ProductSeeder extends Seeder
                 'en' => 'First Product description'
             ],
             'category_id' => rand(1,3),
+            'warehouse_id' => 1,
             'image' => 'default.png',
             'purchase_price' => 100,
             'sale_price' => 150,
@@ -39,6 +40,7 @@ class ProductSeeder extends Seeder
                 'en' => 'second Product description'
             ],
             'category_id' => rand(1,3),
+            'warehouse_id' => 1,
             'image' => 'default.png',
             'purchase_price' => 100,
             'sale_price' => 150,
@@ -55,6 +57,7 @@ class ProductSeeder extends Seeder
                 'en' => 'Third Product description'
             ],
             'category_id' => rand(1,3),
+            'warehouse_id' => 1,
             'image' => 'default.png',
             'purchase_price' => 100,
             'sale_price' => 150,

@@ -53,6 +53,23 @@
 						</a>
 					</li>						
 					@endcan
+
+					@can('warehouse.view')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('warehouses.index') }}">
+							<?xml version="1.0" ?>
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="side-menu__icon"><title/>
+								<path d="M2,9.654a1,1,0,0,0-1,1V22.821a1,1,0,0,0,2,0V10.654A1,1,0,0,0,2,9.654Z"/>
+								<path d="M22,9.321a1,1,0,0,0-1,1v12.5a1,1,0,0,0,2,0v-12.5A1,1,0,0,0,22,9.321Z"/>
+								<rect height="6" rx="0.5" ry="0.5" width="7" x="8.5" y="10.821"/>
+								<rect height="6" rx="0.5" ry="0.5" width="7" x="12.5" y="17.821"/>
+								<rect height="6" rx="0.5" ry="0.5" width="7" x="4.5" y="17.821"/>
+								<path d="M23.627,3.77,12.71-.124a.514.514,0,0,0-.331-.005L.386,3.777A.581.581,0,0,0,0,4.335v3.4a.565.565,0,0,0,.545.583H23.454A.565.565,0,0,0,24,7.738V4.324A.581.581,0,0,0,23.627,3.77Z"/>
+							</svg>						
+							<span class="side-menu__label">@lang('warehouses.title')</span>
+						</a>
+					</li>
+					@endcan
 					
 					@can('products.view')
 					<li class="slide">
@@ -113,7 +130,7 @@
 					</li>
 					@endcan
 
-					@can('settings.view')
+					@can('settings.edit')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('settings.edit') }}">
 							<?xml version="1.0" ?>

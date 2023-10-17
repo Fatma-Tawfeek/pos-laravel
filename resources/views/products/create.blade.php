@@ -80,11 +80,22 @@
                     <div class="form-group">
                         <label for="inputName">@lang('products.sale_price')</label>
                         <input type="number" class="form-control" step="0.01"  id="inputName" placeholder="@lang('products.sale_price')" name="sale_price" value="{{ old('sale_price') }}">
-                    </div>   
-                    <div class="form-group">
-                        <label for="inputName">@lang('products.stock')</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="@lang('products.stock')" name="stock" value="{{ old('stock') }}">
-                    </div>        
+                    </div>  
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCategory">@lang('products.warehouse')</label>
+                            <select name="warehouse_id" id="inputCategory" class="form-control">
+                                <option value="">@lang('products.select_warehouse')</option>
+                                @foreach ($warehouses as $warehouse )
+                                <option value="{{ $warehouse->id }}" {{ old('warehouse_id') == $warehouse->id ? 'selected' : '' }} {{ $warehouse->id == 1 ? 'selected' : '' }}>{{ $warehouse->name }}</option>                                
+                                @endforeach
+                            </select>
+                        </div> 
+                        <div class="form-group col-md-6">
+                            <label for="inputName">@lang('products.stock')</label>
+                            <input type="number" class="form-control" id="inputName" placeholder="@lang('products.stock')" name="stock" value="{{ old('stock') }}">
+                        </div>                              
+                    </div>  
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <button type="submit" class="btn btn-primary">@lang('products.add_btn')</button>
                     </div>

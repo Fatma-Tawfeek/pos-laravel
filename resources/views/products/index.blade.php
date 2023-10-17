@@ -74,6 +74,7 @@
                             <th>@lang('products.purchase_price')</th>
                             <th>@lang('products.sale_price')</th>
                             <th>@lang('products.profit_percent')</th>
+                            <th>@lang('products.warehouse')</th>                            
                             <th>@lang('products.stock')</th>
                             <th>@lang('products.actions')</th>
                         </tr>
@@ -89,6 +90,7 @@
                             <td>{{ $product->purchase_price }} {{ app('settings')['currency'] }}</td>
                             <td>{{ $product->sale_price }} {{ app('settings')['currency'] }}</td>
                             <td>{{ $product->profit_percent }} %</td>
+                            <td>{{ $product->warehouse->name }}</td>
                             <td>{{ $product->stock }}</td>
                             <td>
 

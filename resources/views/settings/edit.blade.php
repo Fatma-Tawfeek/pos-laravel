@@ -38,15 +38,6 @@
                 <form class="form-horizontal" action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    {{-- <div class="form-group">
-                        <label for="inputCategory">@lang('products.category')</label>
-                        <select name="category_id" id="inputCategory" class="form-control">
-                            <option value="">@lang('products.select_category')</option>
-                            @foreach ($categories as $category )
-                            <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>                                
-                            @endforeach
-                        </select>
-                    </div> --}}
                         <div class="form-group">
                             <label for="inputName">@lang('settings.name')</label>
                             <input type="text" class="form-control" id="inputName" name="app_name" value="{{ app('settings')['app_name'] }}">
@@ -59,14 +50,14 @@
                     <div class="row">                        
                         <div class="form-group col-md-6">
                             <label for="formFile" class="form-label">@lang('settings.logo')</label> 
-                            <img src="{{ asset('assets/img/brand/' . app('settings')['logo'] ) }}" alt="" width="200" class="img-thumbnail mb-2" id="blah">
-                            <input class="form-control" type="file" name="logo" accept="image/*" id="imgInp"> 
+                            <img src="{{ asset('assets/img/brand/' . app('settings')['logo'] ) }}" alt="logo" height="30" class="img-thumbnail mb-2" id="logo">
+                            <input class="form-control" type="file" name="logo" accept="image/*" id="logoInp"> 
                         </div>
     
                         <div class="form-group col-md-6">
                             <label for="formFile" class="form-label">@lang('settings.favicon')</label> 
-                            <img src="{{ asset('assets/img/brand/' . app('settings')['favicon'] ) }}" alt="" class="img-thumbnail mb-2" id="blah">
-                            <input class="form-control" type="file" name="favicon" accept="image/*" id="imgInp"> 
+                            <img src="{{ asset('assets/img/brand/' . app('settings')['favicon'] ) }}" alt="favicon" height="30" class="img-thumbnail mb-2" id="fav">
+                            <input class="form-control" type="file" name="favicon" accept="image/*" id="favInp"> 
                         </div>
                     </div>
   
@@ -91,10 +82,17 @@
 
 @push('scripts')
 <script>
-imgInp.onchange = evt => {
-    const [file] = imgInp.files
+logoInp.onchange = evt => {
+    const [file] = logoInp.files
     if (file) {
-      blah.src = URL.createObjectURL(file)
+      logo.src = URL.createObjectURL(file)
+    }
+  }
+
+  favInp.onchange = evt => {
+    const [file] = favInp.files
+    if (file) {
+      fav.src = URL.createObjectURL(file)
     }
   }
 </script> 

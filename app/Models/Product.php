@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Order;
 use App\Models\Category;
+use App\Models\Warehouse;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,7 @@ class Product extends Model
         'purchase_price',
         'sale_price',
         'category_id',
+        'warehouse_id',
         'stock',
         'description',
         'image'
@@ -39,6 +41,11 @@ class Product extends Model
     public function category() 
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function warehouse() 
+    {
+        return $this->belongsTo(Warehouse::class);
     }
 
     public function orders() {

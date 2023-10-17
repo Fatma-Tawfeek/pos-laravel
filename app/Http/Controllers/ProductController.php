@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Warehouse;
 use App\Traits\UploadFile;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -33,6 +34,8 @@ class ProductController extends Controller
             return $q->where('name', 'LIKE', '%' . $request->search . '%');
         })->when($request->category_id, function ($q) use ($request) {
             return $q->where('category_id', $request->category_id);
+        })->when($request->warehouse_id, function ($q) use ($request) {
+            return $q->where('warehouse_id', $request->warehouse_id);
         })
         ->with('category')
         ->orderBy('id', 'desc')
@@ -52,7 +55,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('products.create', compact('categories'));
+        $warehouses = Warehouse::get();
+
+        return view('products.create', compact('categories', 'warehouses'));
     }
 
     /**
@@ -73,6 +78,7 @@ class ProductController extends Controller
                 'ar' => $request->desc_ar,
                 'en' => $request->desc_en
             ],
+            'warehouse_id' => $request->warehouse_id,
             'category_id' => $request->category_id,
             'image' => $imageName ?? 'default.png',
             'purchase_price' => $request->purchase_price,
@@ -91,8 +97,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::get();
+        $warehouses = Warehouse::get();
 
-        return view('products.edit', compact('product', 'categories'));
+        return view('products.edit', compact('product', 'categories', 'warehouses'));
     }
 
     /**
@@ -114,6 +121,7 @@ class ProductController extends Controller
                 'ar' => $request->desc_ar,
                 'en' => $request->desc_en
             ],
+            'warehouse_id' => $request->warehouse_id,
             'category_id' => $request->category_id,
             'image' => $imageName ?? $product->image,
             'purchase_price' => $request->purchase_price,

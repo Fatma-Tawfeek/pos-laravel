@@ -82,10 +82,21 @@
                         <label for="inputName">@lang('products.sale_price')</label>
                         <input type="number" class="form-control" id="inputName" placeholder="@lang('products.sale_price')" step="0.01" name="sale_price" value="{{ $product->sale_price }}">
                     </div>   
-                    <div class="form-group">
-                        <label for="inputName">@lang('products.stock')</label>
-                        <input type="number" class="form-control" id="inputName" placeholder="@lang('products.stock')" name="stock" value="{{ $product->stock }}">
-                    </div>        
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCategory">@lang('products.warehouse')</label>
+                            <select name="warehouse_id" id="inputCategory" class="form-control">
+                                <option value="">@lang('products.select_warehouse')</option>
+                                @foreach ($warehouses as $warehouse )
+                                <option value="{{ $warehouse->id }}" {{ $product->warehouse_id == $warehouse->id ? 'selected' : '' }} >{{ $warehouse->name }}</option>                                
+                                @endforeach
+                            </select>
+                        </div> 
+                        <div class="form-group col-md-6">
+                            <label for="inputName">@lang('products.stock')</label>
+                            <input type="number" class="form-control" id="inputName" placeholder="@lang('products.stock')" name="stock" value="{{ $product->stock }}">
+                        </div>                              
+                    </div>     
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <button type="submit" class="btn btn-primary">@lang('products.edit_btn')</button>
                     </div>
