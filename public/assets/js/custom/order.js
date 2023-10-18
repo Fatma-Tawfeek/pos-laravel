@@ -8,7 +8,8 @@ $(document).ready(function () {
         var id = $(this).data('id');
         var price = $.number($(this).data('price'), 2);
 
-        $(this).removeClass('btn-success').addClass('btn-default disabled');
+        $(this).addClass('border border-primary');
+        $(this).css("pointer-events", "none");
 
         var html =
             `<tr>
@@ -38,7 +39,9 @@ $(document).ready(function () {
         var id = $(this).data('id');
 
         $(this).closest('tr').remove();
-        $('#product-' + id).removeClass('btn-default disabled').addClass('btn-success');
+        $('#product-' + id).removeClass('border border-primary');
+        $('#product-' + id).css("pointer-events", "");
+
 
         //to calculate total price
         calculateTotal();

@@ -28,5 +28,15 @@ return [
     'edit_title' => 'Edit Client',
     'edit_form_title' => 'Edit Client Form',
     'edit_btn' => 'EDIT',
-    'success_msg' => 'Action has been done successfully!'
+    'success_msg' => 'Action has been done successfully!',
+
+    // Add Order
+    'add_title' => 'Add Order',
+    'categories' => 'Categories',
+    'order' => 'Order',
+    'product' => 'Product',
+    'quantity' => 'Quantity',
+    'previous_orders' => 'Previous Orders',
+    'edit_title' => 'Edit Order',
+    'edit_btn' => 'EDIT',
 ];

@@ -28,5 +28,15 @@ return [
     'edit_title' => 'تعديل العميل',
     'edit_form_title' => 'نموذج تعديل الطلب',
     'edit_btn' => 'تعديل',
-    'success_msg' => 'تمت العملية بنجاح !'
+    'success_msg' => 'تمت العملية بنجاح !',
+
+    // Add Order
+    'add_title' => 'اضافة طلب',
+    'categories' => 'الاقسام',
+    'order' => 'الطلب',
+    'product' => 'المنتج',
+    'quantity' => 'الكمية',
+    'previous_orders' => 'الطلبات السابقة',
+    'edit_title' => 'تعديل طلب',
+    'edit_btn' => 'تعديل',
 ];
