@@ -29,8 +29,9 @@
                     <h4 class="card-title ">@lang('roles.edit_form_title')</h4>
                 </div>
     
-                <form action="{{route('roles.store')}}" method="POST">
-                    @csrf                            
+                <form action="{{route('roles.update', $role)}}" method="POST">
+                    @csrf                  
+                    @method('PUT')          
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

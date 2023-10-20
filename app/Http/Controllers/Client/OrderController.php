@@ -36,7 +36,7 @@ class OrderController extends Controller
     {
         $this->attach_order($request, $client);
         
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('orders.index');
 
@@ -61,7 +61,7 @@ class OrderController extends Controller
 
         $this->attach_order($request, $client);
 
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
 
         return redirect()->route('orders.index');
     }

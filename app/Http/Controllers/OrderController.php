@@ -51,7 +51,7 @@ class OrderController extends Controller
             ]);
         }
         $order->delete();
-        Alert::toast('Toast Message', 'success');
+        Alert::toast(trans('users.success_msg'), 'success');
         return redirect()->route('orders.index');
     }
 }
