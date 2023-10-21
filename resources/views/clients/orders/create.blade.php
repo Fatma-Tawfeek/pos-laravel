@@ -55,7 +55,7 @@
                                                 data-id="{{ $product->id }}"
                                                 data-price="{{ $product->sale_price }}"
                                                 >
-                                                    <img class="card-img-top" src="{{ asset('images/products/' . $product->image ) }}">
+                                                    <img class="card-img-top" height="100" src="{{ asset('images/products/' . $product->image ) }}">
                                                     <div class="px-2 pt-2 pb-1 custom-card-body card-body">
                                                         <p class="font-weight-bold mb-0 text-gray-900">{{ $product->name }}</p>
                                                         <p class="m-0 item-badges">

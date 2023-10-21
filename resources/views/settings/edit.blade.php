@@ -50,7 +50,7 @@
                     <div class="row">                        
                         <div class="form-group col-md-6">
                             <label for="formFile" class="form-label">@lang('settings.logo')</label> 
-                            <img src="{{ asset('assets/img/brand/' . app('settings')['logo'] ) }}" alt="logo" height="30" class="img-thumbnail mb-2" id="logo">
+                            <img src="{{ asset('assets/img/brand/' . app('settings')['logo'] ) }}" alt="logo" width="100" class="img-thumbnail mb-2" id="logo">
                             <input class="form-control" type="file" name="logo" accept="image/*" id="logoInp"> 
                         </div>
     
