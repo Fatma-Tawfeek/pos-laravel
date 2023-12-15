@@ -2,7 +2,7 @@
 
 A multilingual Point of Sale (POS) system developed using Laravel, HTML, CSS, JavaScript, and Bootstrap. This system allows managing products, orders, clients, and users with specific roles and permissions.
 
-![Login Page](hhttps://imgur.com/TVucSuY.png)
+![Login Page](https://imgur.com/TVucSuY.png)
 ![Home Page](https://imgur.com/0tmfdMd.png)
 ![Products Page](https://imgur.com/DLTBZj8.png)
 ![POS Page](https://imgur.com/RO5SYO0.png)
