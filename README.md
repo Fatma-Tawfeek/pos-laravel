@@ -2,11 +2,11 @@
 
 A multilingual Point of Sale (POS) system developed using Laravel, HTML, CSS, JavaScript, and Bootstrap. This system allows managing products, orders, clients, and users with specific roles and permissions.
 
-![Login Page](hhttps://imgur.com/TVucSuY)
-![Home Page](https://imgur.com/0tmfdMd)
-![Products Page](https://imgur.com/DLTBZj8)
-![POS Page](https://imgur.com/RO5SYO0)
-![Settings Page](https://imgur.com/smwlkyP)
+![Login Page](hhttps://imgur.com/TVucSuY.png)
+![Home Page](https://imgur.com/0tmfdMd.png)
+![Products Page](https://imgur.com/DLTBZj8.png)
+![POS Page](https://imgur.com/RO5SYO0.png)
+![Settings Page](https://imgur.com/smwlkyP.png)
 
 ## Features
 
@@ -40,13 +40,13 @@ A multilingual Point of Sale (POS) system developed using Laravel, HTML, CSS, Ja
 
 2. Install Dependencies:
      ```bash
-        composer install
-        npm install
+    composer install
+    npm install
     ```
 
 3. Set up the Database:
      ```bash
-        php artisan migrate
+    php artisan migrate
     ```
 
 4. Start the Development Server:
